@@ -1,0 +1,24 @@
+{
+  "name": "stockr",
+  "version": "1.0.0",
+  "description": "Stock ticker for your desktop",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesEarle/StockR.git"
+  },
+  "keywords": [
+    "stocks",
+    "investments",
+    "portfolio"
+  ],
+  "author": "James Earle",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/JamesEarle/StockR/issues"
+  },
+  "homepage": "https://github.com/JamesEarle/StockR#readme"
+}
