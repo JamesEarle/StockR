@@ -16,11 +16,11 @@
     </body>
 
 	<script>
+		// Option 1
 		var x = require('./speak').Speak.prototype;
-
-		// x now contains a Speak object.
 		x.say("some stuff");
 
+		// Option 2
 		var y = require('./speak');
 		var speak = new y.Speak();
 		speak.say('from here now');
