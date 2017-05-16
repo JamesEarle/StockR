@@ -1,11 +1,17 @@
 import {app, BrowserWindow} from 'electron';
+import {Speak} from './speak';
+
 declare var __dirname, process;
 
 let win;
 
 let createWindow = () => {
-    win = new BrowserWindow({width:800, height: 900});
+    win = new BrowserWindow({width:400, height: 400});
     win.loadURL(`file://${__dirname}/index.html`);
+    
+    // Imports are fine.
+    let x = new Speak().say("words");
+        
     win.on("closed", () => {
         win = null;
     });

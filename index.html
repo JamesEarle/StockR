@@ -1,9 +1,32 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Hello World!</title>
+        <title>StockR</title>
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <div>Hello World!</div>
+        <header>
+            <h1>StockR</h1>
+        </header>
+        <table>
+			<tr>
+				<td><img src="img/plus.png" width="44" height="44"/></td>
+			</tr>
+        </table>
     </body>
+
+	<script>
+		var x = require('./speak').Speak.prototype;
+
+		// x now contains a Speak object.
+		x.say("some stuff");
+
+		var y = require('./speak');
+		var speak = new y.Speak();
+		speak.say('from here now');
+
+		// stuff
+		require('./renderer.js');
+	</script>
+
 </html>
