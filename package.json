@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/JamesEarle/StockR/issues"
   },
-  "homepage": "https://github.com/JamesEarle/StockR#readme"
+  "homepage": "https://github.com/JamesEarle/StockR#readme",
+  "dependencies": {
+    "request": "^2.81.0"
+  }
 }

@@ -2,31 +2,36 @@
     <head>
         <meta charset="UTF-8">
         <title>StockR</title>
-        <link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <header>
-            <h1>StockR</h1>
+		<header>
+			<h1>StockR</h1>
         </header>
         <table>
 			<tr>
 				<td><img src="img/plus.png" width="44" height="44"/></td>
 			</tr>
         </table>
-    </body>
+		
+		<!-- <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
+		<script type="text/javascript">
+			require('./make-request')
+		</script>
 
-	<script>
+		<script>
 		// Option 1
-		var x = require('./speak').Speak.prototype;
-		x.say("some stuff");
-
-		// Option 2
-		var y = require('./speak');
-		var speak = new y.Speak();
-		speak.say('from here now');
-
-		// stuff
-		require('./renderer.js');
-	</script>
+		// var x = require('./speak').Speak.prototype;
+		// x.say("some stuff");
+		
+		// // Option 2
+		// var y = require('./speak');
+		// var speak = new y.Speak();
+		// speak.say('from here now');
+		
+		// // Option 3
+		// require('./renderer.js');
+		</script>
+	</body>
 
 </html>
