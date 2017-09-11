@@ -5,34 +5,22 @@
 		<link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+		<script type="text/javascript">
+			let submit = require('./renderer/index').submit;
+		</script>
 		<header>
 			<h1>StockR</h1>
-        </header>
+		</header>
+		<input id="add-symbol" type="text" />
+		<button onclick="submit()">Add a symbol</button>
         <table>
-			<tr>
-				<td><img id="add-symbol" src="img/plus.png" width="44" height="44"/></td>
-			</tr>
+			<thead>
+				<td>Symbol</td>
+				<td>Price</td>
+			</thead>
+			<tbody>
+
+			</tbody>
         </table>
-		
-		<!-- <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
-		<script type="text/javascript">
-			// require('./make-request')
-			require('./renderer/index');
-		</script>
-
-		<script>
-		// Option 1
-		// var x = require('./speak').Speak.prototype;
-		// x.say("some stuff");
-		
-		// // Option 2
-		// var y = require('./speak');
-		// var speak = new y.Speak();
-		// speak.say('from here now');
-		
-		// // Option 3
-		// require('./renderer.js');
-		</script>
 	</body>
-
 </html>

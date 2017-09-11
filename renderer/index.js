@@ -1,12 +1,10 @@
-const { ipcRenderer } = require('electron')
-
-
-document.getElementById('add-connection').addEventListener('click', () => {
-    const BrowserWindow = remote.BrowserWindow;
-    var win = new BrowserWindow({ width: 400, height: 200 });
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, '../symbol.html'),
-        protocol: 'file:',
-        slashes: true
-    }));
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var req = require("../modules/Request");
+function submit() {
+    var input = document.getElementById('add-symbol').value;
+    var myRequest = new req.Request(input);
+    myRequest.makeRequest();
+}
+exports.submit = submit;
+//# sourceMappingURL=index.js.map

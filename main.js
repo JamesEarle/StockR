@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var win;
 var createWindow = function () {
@@ -19,3 +19,4 @@ electron_1.app.on("activate", function () {
     if (win === null)
         createWindow();
 });
+//# sourceMappingURL=main.js.map
