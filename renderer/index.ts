@@ -6,7 +6,8 @@ let key = "ADOUOEB4TRXN6KA5";
 
 export function submit() {
     let symbol = (document.getElementById('add-symbol') as HTMLInputElement).value;
-    let uri = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + symbol + "&interval=1min&apikey=" + key;
+
+    let uri = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=" + key;
 
     let x = request.get(uri, (err, res, body) => {
         if (!err && res.statusCode == 200) {
