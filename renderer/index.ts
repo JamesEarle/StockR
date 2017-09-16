@@ -6,8 +6,10 @@ let key = "ADOUOEB4TRXN6KA5";
 
 export function submit() {
     let symbol = (document.getElementById('add-symbol') as HTMLInputElement).value;
+    let func = (document.getElementById('function') as HTMLSelectElement).value;
 
-    let uri = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + symbol + "&apikey=" + key;
+    // todo: allow for CSV download
+    let uri = "https://www.alphavantage.co/query?function=" + func + "&symbol=" + symbol + "&apikey=" + key;
 
     let x = request.get(uri, (err, res, body) => {
         if (!err && res.statusCode == 200) {
