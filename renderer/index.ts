@@ -13,14 +13,14 @@ export function submit() {
 
     let x = request.get(uri, (err, res, body) => {
         if (!err && res.statusCode == 200) {
-            callback(body);
+            appendToDom(body);
         } else {
             return "Something went wrong...\n" + err; 
         }
     });
 }
 
-function callback(arg) {
+function appendToDom(arg) {
     let body = document.getElementsByTagName('body').item(0);
     
     let p = document.createElement("p");
