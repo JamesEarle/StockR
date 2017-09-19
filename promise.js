@@ -29,25 +29,27 @@
 //     }
 // });
 
-let badKey = "ABCD123";
+
+let req = require("request");            
 let key = "ADOUOEB4TRXN6KA5";
 let demo = "demo";
-let uri = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=TSLA&apikey=" + key;
-let req = require("request");
+let uri = "https://www.alphavantage.co/que?function=TIME_SERIES_DAILY&symbol=TSLA&apikey=" + key;
 
-let promise = new Promise((resolve, reject) => {
+let p = new Promise((resolve, reject) => {
     req.get(uri, (err, res, body) => {
-        if(!err && res.statusCode == 200) {
-            console.log(body.substring(0, 500));
-            resolve("Success - " + res.statusCode);
+        if (!err && res.statusCode == 200) {
+            resolve(body.substring(0, 500)); // Successful responses are really long, so just first 500 for example
         } else {
-            reject("Failure - " + res.statusCode + "\n" + err);
+            reject(res.statusCode)
         }
-    })
+    }); 
 });
 
-promise.then((message) => {
-    console.log(message);
-}).catch((reason) => {
-    console.log(reason);    
+
+
+p.then(result => { 
+    console.log(result); 
+}).catch(err => {
+    console.log(err);
 });
+
