@@ -1,13 +1,13 @@
 import * as request from 'request';
+import * as fs from 'file-system';
 
 let key = "ADOUOEB4TRXN6KA5";
 
 export function submit() {
-    let symbol = (document.getElementById('add-symbol') as HTMLInputElement).value;
+    let symbol = (document.getElementById('add-symbol') as HTMLInputElement).value.toUpperCase();
     let func = (document.getElementById('function') as HTMLSelectElement).value;
     let datatype = (document.getElementById('data-type') as HTMLSelectElement).value;
 
-    // todo: allow for CSV download
     let uri = "https://www.alphavantage.co/query?function=" + func + "&symbol=" + symbol + "&apikey=" + key + "&datatype=" + datatype;
 
     let p = new Promise((resolve, reject) => {
@@ -23,9 +23,10 @@ export function submit() {
     p.then(result => {
         if(datatype === "json") {
             appendToDom(result);
-        } else {
-            // CSV
-            console.log(result);
+        } else { // CSV
+            let fileName = "downloads/" + symbol + "_" + func + "_" + Date.now() + ".csv";
+            fs.writeFile(fileName, result);
+            console.log("File Written: " + fileName);
         }
     }).catch(error => {
         throw error;

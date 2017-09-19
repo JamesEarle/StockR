@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/JamesEarle/StockR#readme",
   "dependencies": {
-    "@types/request": "*"
+    "@types/request": "*",
+    "file-system": "^2.2.2"
   }
 }

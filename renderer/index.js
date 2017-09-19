@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const request = require("request");
+const fs = require("file-system");
 let key = "ADOUOEB4TRXN6KA5";
 function submit() {
-    let symbol = document.getElementById('add-symbol').value;
+    let symbol = document.getElementById('add-symbol').value.toUpperCase();
     let func = document.getElementById('function').value;
     let datatype = document.getElementById('data-type').value;
-    // todo: allow for CSV download
     let uri = "https://www.alphavantage.co/query?function=" + func + "&symbol=" + symbol + "&apikey=" + key + "&datatype=" + datatype;
     let p = new Promise((resolve, reject) => {
         request.get(uri, (err, res, body) => {
@@ -23,8 +23,9 @@ function submit() {
             appendToDom(result);
         }
         else {
-            // CSV
-            console.log(result);
+            let fileName = "downloads/" + symbol + "_" + func + "_" + Date.now() + ".csv";
+            fs.writeFile(fileName, result);
+            console.log("File Written: " + fileName);
         }
     }).catch(error => {
         throw error;
