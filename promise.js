@@ -25,18 +25,39 @@ p.then(result => {
 }).then(vals => {
     const key = "YuXy3H77+GaZtnieqZDvaWND7cfuswO11nyRrKHi8cGfL6I0C3UaJvtQqSBcUBcKBTEwAcfNWtxsFX5RvTxcMQ==";
     const link = "https://ussouthcentral.services.azureml.net/subscriptions/b7f8d76ba14c463397b1285b301edeec/services/06be9653dda84eed93fa99397c5f637c/execute?api-version=2.0&format=swagger";
+    
+    // Sample data for now 
+    // 74.83	75.39	74.07	75.31	37901927
+    let data = {
+        "Inputs": {
+                "input1":
+                [ 
+                    {
+                        'timestamp': "",   
+                        'open': "74.83",   
+                        'high': "75.39",   
+                        'low': "74.07",   
+                        'close': "75.31",   
+                        'volume': "37901927" 
+                    }
+                ],
+        },
+        "GlobalParameters":  {}
+    }
+
     const options = {
         uri: link,
-        method: "GET",
-        "Bearer": key
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + key,
+        },
+        body: JSON.stringify(data)
     }
 
     req(options, (err, res, body) => {
-        console.log(err);
-        console.log(res);
         console.log(body);
     });
-    // console.log(vals);  
 }).catch(err => {
     console.log(err);
 });
