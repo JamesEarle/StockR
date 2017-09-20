@@ -33,22 +33,35 @@
 let req = require("request");            
 let key = "ADOUOEB4TRXN6KA5";
 let demo = "demo";
-let uri = "https://www.alphavantage.co/que?function=TIME_SERIES_DAILY&symbol=TSLA&apikey=" + key;
+let uri = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=" + key;
 
 let p = new Promise((resolve, reject) => {
     req.get(uri, (err, res, body) => {
         if (!err && res.statusCode == 200) {
-            resolve(body.substring(0, 500)); // Successful responses are really long, so just first 500 for example
+            resolve(body); // Successful responses are really long, so just first 500 for example
         } else {
             reject(res.statusCode)
         }
     }); 
 });
 
+p.then(result => {
+    result = JSON.parse(result);
+    result = result["Time Series (Daily)"];
+    let date = new Date();
+    let dayOfMonth = date.getDate().toString().length == 2 ? date.getDate() : "0" + date.getDate().toString();
+    let month = date.getMonth().toString().length == 2 ? date.getMonth() : "0" + (date.getMonth() + 1).toString();
+    let formattedDate = date.getFullYear() + "-" + month + "-" + dayOfMonth;
 
+    let today = result[formattedDate];
 
-p.then(result => { 
-    console.log(result); 
+    let obj = {
+        "open"  : today["1. open"],
+        "high"  : today["2. high"],
+        "low"   : today["3. low"],
+        "volume": today["5. volume"]
+    }
+    console.log(obj); 
 }).catch(err => {
     console.log(err);
 });
