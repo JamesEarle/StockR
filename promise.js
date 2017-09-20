@@ -1,34 +1,3 @@
-// promise.js
-// let myFirstPromise = new Promise((resolve, reject) => {
-//     // We call resolve(...) when what we were doing asynchronously was successful, and reject(...) when it failed.
-//     // In this example, we use setTimeout(...) to simulate async code. 
-//     // In reality, you will probably be using something like XHR or an HTML5 API.
-//     setTimeout(function () {
-//         if(Math.random() > 0.5) {
-//             reject("Failed!"); // Yay! Everything went well!
-//         } else {
-//             resolve("Success!");
-//         }
-//     }, 250);
-// });
-
-// myFirstPromise.then((successMessage) => {
-//     // successMessage is whatever we passed in the resolve(...) function above.
-//     // It doesn't have to be a string, but if it is only a succeed message, it probably will be.
-//     console.log("Yay! " + successMessage);
-// }).catch((reason) => {
-//     console.log("Boo! " + reason);
-// });
-
-
-// let x = req.get(uri, (err, res, body) => {
-//     if (!err && res.statusCode == 200) {
-//         console.log("we're good");        
-//     } else {
-//         console.log("Something went wrong...\n" + err); 
-//     }
-// });
-
 
 let req = require("request");            
 let key = "ADOUOEB4TRXN6KA5";
@@ -38,7 +7,7 @@ let uri = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=M
 let p = new Promise((resolve, reject) => {
     req.get(uri, (err, res, body) => {
         if (!err && res.statusCode == 200) {
-            resolve(body); // Successful responses are really long, so just first 500 for example
+            resolve(body);
         } else {
             reject(res.statusCode)
         }
@@ -54,8 +23,20 @@ p.then(result => {
         console.log("Something went wrong.");
     }
 }).then(vals => {
-    // make AzureML Web Service call here with values
-    console.log(vals);  
+    const key = "YuXy3H77+GaZtnieqZDvaWND7cfuswO11nyRrKHi8cGfL6I0C3UaJvtQqSBcUBcKBTEwAcfNWtxsFX5RvTxcMQ==";
+    const link = "https://ussouthcentral.services.azureml.net/subscriptions/b7f8d76ba14c463397b1285b301edeec/services/06be9653dda84eed93fa99397c5f637c/execute?api-version=2.0&format=swagger";
+    const options = {
+        uri: link,
+        method: "GET",
+        "Bearer": key
+    }
+
+    req(options, (err, res, body) => {
+        console.log(err);
+        console.log(res);
+        console.log(body);
+    });
+    // console.log(vals);  
 }).catch(err => {
     console.log(err);
 });
