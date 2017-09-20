@@ -47,7 +47,24 @@ let p = new Promise((resolve, reject) => {
 
 p.then(result => {
     result = JSON.parse(result);
-    result = result["Time Series (Daily)"];
+    let vals = getTodaysValues(result);
+    if(vals) {
+        return vals;
+    } else {
+        console.log("Something went wrong.");
+    }
+}).then(vals => {
+    // make AzureML Web Service call here with values
+    console.log(vals);  
+}).catch(err => {
+    console.log(err);
+});
+
+function getTodaysValues(json) {
+    result = json["Time Series (Daily)"];
+    
+    if(!result) return undefined;
+
     let date = new Date();
     let dayOfMonth = date.getDate().toString().length == 2 ? date.getDate() : "0" + date.getDate().toString();
     let month = date.getMonth().toString().length == 2 ? date.getMonth() : "0" + (date.getMonth() + 1).toString();
@@ -61,8 +78,6 @@ p.then(result => {
         "low"   : today["3. low"],
         "volume": today["5. volume"]
     }
-    console.log(obj); 
-}).catch(err => {
-    console.log(err);
-});
+    return obj;
+}
 
